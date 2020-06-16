@@ -27,7 +27,10 @@ mongoose
   })
   .then(() => console.log('DB connection successful!'));
 
+
+// behind the scenes heroku will assign some port to this env variable
 const port = process.env.PORT || 3000;
+
 const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
