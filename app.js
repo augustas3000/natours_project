@@ -16,7 +16,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingsRouter = require('./routes/bookingRoutes');
-// sss
+// start express app:
 const app = express(); //create an app object from express module
 
 // set the templating engine for SSR, in this case - Pug:
