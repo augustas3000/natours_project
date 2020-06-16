@@ -27,7 +27,6 @@ mongoose
   })
   .then(() => console.log('DB connection successful!'));
 
-
 // behind the scenes heroku will assign some port to this env variable
 const port = process.env.PORT || 3000;
 
@@ -45,5 +44,13 @@ process.on('unhandledRejection', err => {
   // remember we create a server using app.listen()
   server.close(() => {
     process.exit(1);
+  });
+});
+
+// responding to sigterm signal - herokus shutdown
+process.on('SIGTERM', () => {
+  console.log('😇SIGTERM RECEIVED. Shutting down gracefully');
+  server.close(() => {
+    console.log('💣 Process terminated');
   });
 });

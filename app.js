@@ -23,6 +23,9 @@ const bookingsRouter = require('./routes/bookingRoutes');
 // start express app:
 const app = express(); //create an app object from express module
 
+// trust proxies - for secure cookie sending
+app.enable('trust proxy');
+
 // set the templating engine for SSR, in this case - Pug:
 // no need for imports as express automatically supports common
 // engines like Pug.
