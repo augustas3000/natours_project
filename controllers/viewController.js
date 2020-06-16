@@ -66,19 +66,19 @@ exports.getUserAccount = (req, res) => {
 exports.getMyTours = catchAsync(async (req, res, next) => {
   // get all bookings by user
   const bookings = await Booking.find({ user: req.user.id });
-  console.log(bookings);
+  // console.log(bookings);
 
-  console.log(bookings.length);
+  // console.log(bookings.length);
 
   // find tours with returned ids
   const tourIDs = bookings.map(el => el.tour.id);
-  console.log(tourIDs);
+  // console.log(tourIDs);
 
   // get the tours that have an id that is in the tourIDs array
   // { _id: { $in: tourIDs } }
   const tours = await Tour.find({ _id: { $in: tourIDs } });
-  console.log('🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦');
-  console.log(tours.length);
+  // console.log('🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦🇬🇦');
+  // console.log(tours.length);
 
   res.status(200).render('overview', {
     title: 'My Tours',

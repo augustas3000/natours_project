@@ -126,9 +126,9 @@ userSchema.methods.createPasswordResetToken = function() {
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000; //miliseconds - 10 min
 
-  console.log('🤪 reset token: ', { resetToken });
-  console.log('🤪 passwordReset token - ENCRYPTED: ', this.passwordResetToken);
-  console.log('🤪 passwordResetExpires: ', this.passwordResetExpires);
+  // console.log('🤪 reset token: ', { resetToken });
+  // console.log('🤪 passwordReset token - ENCRYPTED: ', this.passwordResetToken);
+  // console.log('🤪 passwordResetExpires: ', this.passwordResetExpires);
   // vie email we need to send the unencrypted token, otherwise it would be
   // unusable by user
   return resetToken;

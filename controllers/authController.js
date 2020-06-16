@@ -69,7 +69,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   // the host - either localhost:3000 in development env, or the real
   // host in production
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
+  // console.log(url);
 
   // we await this so the next step happens only when the email
   // sending is complete - remember that sendWelcome is async function
@@ -261,7 +261,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 exports.resetPassword = catchAsync(async (req, res, next) => {
   // get user based on the token
   // encrypt original token so we can compare it
-  console.log(req.params.token);
+  // console.log(req.params.token);
   
   const hashToken = crypto
     .createHash('sha256')

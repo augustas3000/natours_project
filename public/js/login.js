@@ -14,7 +14,10 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3000/api/v1/users/login',
+      // for prod , del local host, end up with relative url, and sine
+      // the api and the website are hosted on the same server, this
+      // will work just fine 
+      url: '/api/v1/users/login',
       data: {
         email,
         password
@@ -37,7 +40,7 @@ export const logout = async () => {
   try {
       const res = await axios({
       method: 'GET',
-      url: 'http://localhost:3000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
 
     // refresh the page:

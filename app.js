@@ -9,6 +9,10 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
+// before deployment need to compress servers responses to the client:
+// we will need this middleware:
+const compression = require('compression');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -84,6 +88,9 @@ app.use(
     ]
   })
 );
+
+// compress the response we send to the client
+app.use(compression());
 
 // test middleware
 app.use((req, res, next) => {

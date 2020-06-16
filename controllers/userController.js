@@ -58,7 +58,7 @@ exports.deleteOldPhoto = catchAsync(async (req, res, next) => {
       result = await fs.unlink(`public/img/users/${file}`);
     }
   });
-  console.log(result);
+  // console.log(result);
   next();
 });
 
@@ -125,10 +125,10 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // BUT, new users may not provide photo right away, so we need to
   // ensure a default in such cases - see userModel, 'photo' field
   if (req.file) filteredBody.photo = req.file.filename;
-  console.log(filteredBody);
-  console.log(req.body.email);
+  // console.log(filteredBody);
+  // console.log(req.body.email);
 
-  console.log(req.user.id);
+  // console.log(req.user.id);
 
   // update user document
   // findbyidandupdate is ok to use here since we dont need pre-save middleware

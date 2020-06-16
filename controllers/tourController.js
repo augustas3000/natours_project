@@ -66,7 +66,7 @@ exports.resizeTourImages = catchAsync(async (req, res, next) => {
     })
   );
 
-  console.log(req.body);
+  // console.log(req.body);
   
   // call udate tour middleware
   next();

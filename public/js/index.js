@@ -32,7 +32,7 @@ if (loginForm) {
 
 if (logOutBtn) {
   logOutBtn.addEventListener('click', e => {
-    console.log("Logging out");
+    // console.log("Logging out");
     
     logout();
   });
@@ -47,7 +47,7 @@ if (userDetailsForm) {
     form.append('email', document.getElementById('email').value);
     form.append('photo', document.getElementById('photo').files[0]);
 
-    console.log(form);
+    // console.log(form);
 
     updateSettings(form, 'data');
   });

@@ -115,7 +115,7 @@ reviewSchema.post('save', function(next) {
 reviewSchema.pre(/^findOneAnd/, async function(next) {
   // here, this - is current querry
   this.r = await this.findOne(); //basically finds itself, and pass data from pre middleware to pos middleware
-  console.log(this.r);
+  // console.log(this.r);
   next();
 });
 
