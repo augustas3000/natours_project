@@ -11,6 +11,7 @@ const router = express.Router();
 router.use(authController.protect);
 
 // a route for the client to get checkout session, need tourid
+// called from frontend
 router.get('/checkout-session/:tourId', bookingController.getCheckoutSession);
 
 // restrict the following routes:
