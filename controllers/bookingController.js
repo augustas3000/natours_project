@@ -82,13 +82,13 @@ const createBookingCheckout = async session => {
   // get users id by email(all good as email is unique):
   const user = (await User.findOne({ email: session.customer_email })).id;
   const price = session.line_items[0].amount / 100;
-
+  console.log("IN create booking checkout -------");
+  
   await Booking.create({
     tour,
     user,
     price
   });
-  
 };
 
 exports.webhookCheckout = (req, res, next) => {
@@ -112,7 +112,7 @@ exports.webhookCheckout = (req, res, next) => {
     return res.status(400).send(`Webhook Error: ${error.message}`);
   }
 
-  if (event.type === 'checkout.session.complete') {
+  if (event.type === 'checkout.session.completed') {
     // create a booking - use a function, nut middleware
     // using session data we can create new booking in our db
     createBookingCheckout(event.data.object);
