@@ -8,6 +8,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 // before deployment need to compress servers responses to the client:
 // we will need this middleware:
@@ -23,6 +24,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingsRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 // start express app:
 const app = express(); //create an app object from express module
 
@@ -82,6 +84,18 @@ const limiter = rateLimit({
 // apply limiter to a route
 app.use('/api', limiter);
 
+// why define this route in app.js?
+// becausse in the handler function, when we receive the req.body from
+// stripe, the function we use to read the body, needs the body in raw
+// form(as a stream), not json, we still need to parse body but in RAW
+// format
+app.post(
+  '/webhook-checkout',
+  bodyParser.raw({ type: 'application/json' }), //use body-parser if this doesnae work 
+  bookingController.webhookCheckout
+);
+
+// at this point: the stream will be converted to json
 // body parser - reading data from the body into req.body
 app.use(
   express.json({
