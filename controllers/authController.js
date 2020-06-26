@@ -36,8 +36,10 @@ const createAndSendToken = (user, statusCode, req, res) => {
   };
 
   // only send a secure cookie in production environment where
-  // communication will happen over https
-  // if (req.secure || req.headers('x-forwarded-proto') === 'https') cookieOptions.secure = true;
+  // communication will happen over https, if secure req will have
+  // secure property, but doesnt work in heroku as it modifies the
+  // incoming request before it reaches the app, but we can check the
+  // security bhy checking one of the headers
 
   // attach a cookie 🏵🏵
   res.cookie('jwt', token, cookieOptions);

@@ -13,6 +13,9 @@ const cookieParser = require('cookie-parser');
 // we will need this middleware:
 const compression = require('compression');
 
+// for enable cors:
+const cors = require('cors');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -37,6 +40,27 @@ app.set('views', path.join(__dirname, 'views'));
 // });
 
 // 1) GLOBAL MIDDLEWARES
+
+// implement CORS
+// this midware will add specific headers on incopmming requests to enable CORS
+app.use(cors()); //only allows simple requests - get, post, but we also want put patch del
+// also we want requests that send cookies or non-standard headers:
+// optuions is just another http method we can respond to
+app.options('*', cors());
+
+// also possible for specific routess:
+// app.options('/api/v1/tours/:id', cors()); - only on specif route we
+// allow pre-flight requests
+
+// what if our api and the front end were on different domains:
+// api.natours.com, natours.com, if we only wanted to allow acces from
+// natours.com (frontend), we would do something like this:
+// app.use(
+//   cors({
+//     origin: 'https://www.natours.com' //only this origin would be allowed to make requests to api server
+//   })
+// );
+
 //    serving static files - all static files will be served from
 //    folder - public, like css n shit
 app.use(express.static(path.join(__dirname, 'public')));
@@ -108,6 +132,10 @@ app.use((req, res, next) => {
 app.use('/', viewRouter);
 
 // 3) API ROUTES
+//    if we only wanted cors to be enabled on specific route we could
+//    do something like this instead:
+// app.use('/api/v1/tours', cors(), tourRouter);
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
