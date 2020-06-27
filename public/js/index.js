@@ -83,4 +83,4 @@ if (bookBtn) {
 
 // read the alert message we attached to the body element:
 const alertMessage = document.querySelector('body').dataset.alert;
-if (alert) showAlert('success', alertMessage, 20);
+if (alertMessage) showAlert('success', alertMessage, 20);
