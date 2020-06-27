@@ -8,7 +8,7 @@ export const hideAlert = () => {
 };
 
 //  type = success/error
-export const showAlert = (type, msg) => {
+export const showAlert = (type, msg, time = 5) => {
   //  make sure we hide any existing alerts, before showing an alert
   
   hideAlert();
@@ -26,5 +26,5 @@ export const showAlert = (type, msg) => {
   //   after showing, we hide alerts after 5 secs
   window.setTimeout(() => {
     hideAlert();
-  }, 5000);
+  }, time * 1000);
 };

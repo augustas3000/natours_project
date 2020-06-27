@@ -33,7 +33,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // complete/failed, essentially in our app we need a route
     // /webhook-checkout
 
-    success_url: `${req.protocol}://${req.get('host')}/my-tours`,
+    success_url: `${req.protocol}://${req.get('host')}/my-tours?alert=booking`,
 
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,

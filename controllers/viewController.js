@@ -4,6 +4,18 @@ const AppError = require('./../utils/appError');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 
+exports.alerts = (req, res, next) => {
+  const { alert } = req.query;
+  if (alert === 'booking') {
+    // we put some data on res.locals, so it is available in pug
+    // templates, this is reusable, depending on what alert we want
+    // for particular case
+    res.locals.alert =
+      "Your booking was successful! Check your email for confirmation. If your booking doesn't show up immediatelly, please come back later.";
+  }
+  next();
+};
+
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1. Get all tour data from db.
   const tours = await Tour.find();
